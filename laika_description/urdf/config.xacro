@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <!-- Note: Gazebo, RViz2 and VSCode are very picky about mesh files.  If you want to see it in VSCode Preview URDF
+       then use "package://....", however this will not show up in Gazebo unless as a collision, although it will show up in RViz2.
+       If you want to see the mesh in both RViz2 and Gazebo then use "file://$(find ...", but it will not be visible in VSCode. -->
+
+  <xacro:property name="model_path" value="file://$(find laika_description)/laika.stl"/>
+  <!--xacro:property name="model_path" value="package://laika_description/laika.stl"/-->
+
+  <!-- Robot Dimensions -->
+
+  <xacro:property name="initial_z_pose" value="0.106"/>
+  <xacro:property name="chassis_length" value="0.280"/>
+  <xacro:property name="chassis_width" value="0.140"/>
+  <xacro:property name="chassis_height" value="0.140"/>
+  <xacro:property name="chassis_mass" value="1.850"/>
+  <xacro:property name="chassis_offset_z" value="${chassis_height/2}"/>
+  <!--xacro:property name="z_pose" value="0.106"/-->
+   
+  <xacro:property name="wheel_radius" value="0.048"/>
+  <xacro:property name="wheel_thickness" value="0.04"/>
+  <xacro:property name="wheel_mass" value="0.150"/>
+  <xacro:property name="wheel_base" value="0.160"/>
+  <xacro:property name="wheel_front_offset_x" value="0.110"/>
+  <xacro:property name="wheel_back_offset_x" value="-0.090"/>
+  <xacro:property name="wheel_right_offset_y" value="-0.090"/>
+  <xacro:property name="wheel_left_offset_y" value="0.090"/>
+  <!--xacro:property name="wheel_all_offset_z" value="-0.010"/-->
+  <xacro:property name="wheel_all_offset_z" value="0.048"/>
+    
+</robot>
