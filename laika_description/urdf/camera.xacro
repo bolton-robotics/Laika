@@ -6,8 +6,7 @@
     <link name="camera_link">
         <visual>
             <geometry>
-                <!--cylinder radius="0.005" length="0.003"/-->
-                <box size="0.005 0.005 0.005"/>
+                <sphere radius="0.005" length="0.003"/>
             </geometry>
             <material name="white"/>
         </visual>
@@ -16,7 +15,7 @@
     <joint name="camera_joint" type="fixed">
         <parent link="base_link"/>
         <child link="camera_link"/>
-        <origin xyz="0.146 0 0.076" rpy="0 0 0"/>
+        <origin xyz="0.144 0 0.076" rpy="0 0 0"/>
     </joint>
 
     <joint name="camera_optical_joint" type="fixed">
