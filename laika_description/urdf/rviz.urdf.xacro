@@ -1,6 +1,8 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro"  name="robot">
 
+<!-- For use with RViz to check model and joints -->
+
     <xacro:arg name="use_ros2_control" default="false"/>
     <xacro:arg name="sim_mode" default="false"/>
 
