@@ -14,11 +14,12 @@ import os
 import xacro
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, RegisterEventHandler
 from launch.substitutions import Command, LaunchConfiguration, PythonExpression
 from launch_ros.actions import Node
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch_ros.substitutions import FindPackageShare
+from launch.event_handlers import OnProcessExit
 
 def generate_launch_description():
 
@@ -80,7 +81,7 @@ def generate_launch_description():
 
   # Start Gazebo
 
-    gazebo_params_file = os.path.join(get_package_share_directory(package_name),'config','gazebo_params.yaml')
+    gazebo_params_file = os.path.join(get_package_share_directory(package_name),'gazebo_params.yaml')
 
     # Include the Gazebo launch file, provided by the gazebo_ros package
     start_gazebo_cmd = IncludeLaunchDescription(
@@ -119,6 +120,22 @@ def generate_launch_description():
         executable='spawner',
         arguments=['diff_cont'],
     )
+
+        # Code for delaying a node (I haven't tested how effective it is)
+    # 
+    # First add the below lines to imports
+    # from launch.actions import RegisterEventHandler
+    # from launch.event_handlers import OnProcessExit
+    #
+    # Then add the following below the current diff_drive_spawner
+    delayed_spawn_entity_cmd = RegisterEventHandler(
+        event_handler=OnProcessExit(
+            target_action=start_spawn_entity_cmd,
+            on_exit=[start_diff_drive_cmd],
+        )
+    )
+    #
+    # Replace the diff_drive_spawner in the final return with delayed_diff_drive_spawner
 
     start_joint_broad_cmd = Node(
         package='controller_manager',
@@ -180,7 +197,8 @@ def generate_launch_description():
     ld.add_action(start_twist_mux_cmd)
     ld.add_action(start_gazebo_cmd)
   # ld.add_action(start_gazebo_client_cmd)
-    ld.add_action(start_spawn_entity_cmd)
+    ld.add_action(delayed_spawn_entity_cmd)
+  # ld.add_action(start_spawn_entity_cmd)
     ld.add_action(start_diff_drive_cmd)
     ld.add_action(start_joint_broad_cmd)
   #  ld.add_action(start_rviz_cmd)
