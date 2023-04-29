@@ -12,6 +12,6 @@
     <xacro:include filename="imu.xacro" />
 
     
-    <xacro:include filename="gazebo.xacro" />
+    <xacro:include filename="sim.xacro" />
   
 </robot>
