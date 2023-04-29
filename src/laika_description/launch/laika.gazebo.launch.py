@@ -49,7 +49,10 @@ def generate_launch_description():
     # Constants for paths to different files and folders
     package_name = 'laika_description'
     robot_name_in_model = 'laika'
-    robot_world_name = 'laika.basic.world'
+    robot_world = 'laika.basic.world'
+    robot_world_name = os.path.join(
+        get_package_share_directory('laika_description'),
+        robot_world)
     rviz_config_file_path = os.path.join(get_package_share_directory('laika_description'))
     urdf_file_path = os.path.join(get_package_share_directory('laika_description'))
     world_file_path = os.path.join(get_package_share_directory('laika_description'))

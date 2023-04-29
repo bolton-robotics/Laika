@@ -12,7 +12,7 @@ find_package(ament_cmake REQUIRED)
 # find_package(<dependency> REQUIRED)
 include_directories(include)
 
-install(DIRECTORY launch/ meshes/ urdf/ config/ DESTINATION share/${PROJECT_NAME})
+install(DIRECTORY launch/ meshes/ models/ urdf/ config/ DESTINATION share/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
