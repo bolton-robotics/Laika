@@ -3,24 +3,21 @@ controller_manager:
     update_rate: 30
     use_sim_time: true
 
-    diff_cont:
+    diff_drive_controller:
       type: diff_drive_controller/DiffDriveController
 
-    joint_broad:
+    joint_state_broadcaster:
       type: joint_state_broadcaster/JointStateBroadcaster
 
-diff_cont:
+diff_drive_controller:
   ros__parameters:
-
-    publish_rate: 50.0
-
+    publish_rate: 400.0
     base_frame_id: base_link
-
-    left_wheel_names: ['left_wheel_joint']
-    right_wheel_names: ['right_wheel_joint']
-    wheel_separation: 0.297
-    wheel_radius: 0.033
-
+    odom_frame_id: odom
+    left_wheel_names: ['base_to_left_front_wheel', 'base_to_left_back_wheel']
+    right_wheel_names: ['base_to_right_front_wheel', 'base_to_right_back_wheel']
+    wheel_separation: 0.140
+    wheel_radius: 0.048
     use_stamped_vel: false
 
     # open_loop: false    
