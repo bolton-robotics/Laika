@@ -1,2 +1,2 @@
 # Laika
-An autonomous ROS2 Robot.
+An autonomous ROS2 Robot
