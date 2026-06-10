@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Arguments -->
+    <arg name="video_device" default="/dev/video0"/>
+    <arg name="image_size" default="[640,480]"/>
+    <arg name="camera_frame_id" default="camera_link_optical"/>
+    <arg name="time_per_frame" default="[1, 6]"/>
+
+    <!-- V4L2 Camera Node -->
+    <node pkg="v4l2_camera" exec="v4l2_camera_node" name="camera" output="screen">
+        <param name="video_device" value="$(var video_device)"/>
+        <param name="image_size" value="$(var image_size)"/>
+        <param name="camera_frame_id" value="$(var camera_frame_id)"/>
+        <param name="time_per_frame" value="$(var time_per_frame)"/>
+    </node>
+
+</launch>
