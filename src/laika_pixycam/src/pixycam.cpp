@@ -1,1 +1,0 @@
-// Pixycam object finding code
