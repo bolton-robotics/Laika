@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="laika">
+
+<!-- Load the YAML file -->
+  <xacro:property name="yaml_file" value="$(find laika_bringup)/Config/laika_params.yaml"/>
+  <xacro:property name="laika_params" value="${xacro.load_yaml(yaml_file)}"/>
+
+<!-- Laika Properties -->
+  <xacro:property name="laika_length" value="${laika_params['base']['length']}"/>
+  <xacro:property name="laika_width" value="${laika_params['base']['width']}"/>
+  <xacro:property name="laika_depth" value="${laika_params['base']['depth']}"/>
+  <xacro:property name="laika_mass" value="${laika_params['base']['mass']}"/>
+  <xacro:property name="laika_mesh" value="${laika_params['base']['mesh']}"/>
+
+<!-- Wheel Properties -->
+  <xacro:property name="wheel_radius" value="${laika_params['wheel']['radius']}"/>
+  <xacro:property name="wheel_width" value="${laika_params['wheel']['width']}"/>
+  <xacro:property name="wheel_mass" value="${laika_params['wheel']['mass']}"/>
+  <xacro:property name="wheel_mesh" value="${laika_params['wheel']['mesh']}"/>
+
+
+<!-- Camera Properties -->
+  <xacro:property name="camera_length" value="${laika_params['camera']['length']}"/>
+  <xacro:property name="camera_width" value="${laika_params['camera']['width']}"/>
+  <xacro:property name="camera_depth" value="${laika_params['camera']['depth']}"/>
+  <xacro:property name="lens_radius" value="${laika_params['camera']['rad_lens']}"/>
+  <xacro:property name="lens_length" value="${laika_params['camera']['len_lens']}"/>
+  <xacro:property name="camera_mass" value="${laika_params['camera']['mass']}"/>
+  <xacro:property name="camera_mesh" value="${laika_params['camera']['mesh']}"/>
+
+<!-- Lidar Properties -->
+  <xacro:property name="lidar_radius" value="${laika_params['lidar']['radius']}"/>
+  <xacro:property name="lens_length" value="${laika_params['lidar']['length']}"/>
+  <xacro:property name="lidar_mass" value="${laika_params['lidar']['mass']}"/>
+  <xacro:property name="lidar_mesh" value="${laika_params['lidar']['mesh']}"/>
+
+
+<!-- Colour Substitutions -->
+    <material name="white"> 
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange"> 
+        <color rgba="1 0.3 0.1 1" />
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1" />
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1" />
+    </material>
+
+</robot>

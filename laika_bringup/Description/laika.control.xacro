@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="laika">
+
+<!-- ROS2 Control Interface -->
+
+    <ros2_control name="OskarHardwareInterface" type="system">
+        <hardware>
+            <plugin>mock_components/GenericSystem</plugin>
+            <param name="calculate_dynamics">true</param>
+        </hardware>
+        <joint name="base_left_front_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="base_right_front_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="base_left_back_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+        <joint name="base_right_back_wheel_joint">
+            <command_interface name="velocity" />
+            <state_interface name="velocity"/>
+            <state_interface name="position"/>
+        </joint>
+    </ros2_control>
+
+</robot>

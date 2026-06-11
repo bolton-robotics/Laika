@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="laika">
+
+<!-- Camera urdf file -->
+
+<!-- Camera Description -->
+    
+    <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_depth}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="white"/>
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${camera_length} ${camera_width} ${camera_depth}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+        </collision>
+        <xacro:default_inertial mass="${camera_mass}"/>
+    </link>
+
+    <joint name="base_camera_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="camera_link"/>
+        <origin xyz="0.145 0 0.05" rpy="0 0 0"/>
+    </joint>
+
+    <link name="camera_lens_link">
+        <visual>
+            <geometry>
+                <cylinder radius="${lens_radius} ${lens_length}"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0" />
+            <material name="black"/>
+        </visual>
+        <collision>
+             <geometry>
+                <cylinder radius="${lens_radius} ${lens_length"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 1.57 0" />           
+        </collision>
+    </link>
+
+    <joint name="camera_camera_lens_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_lens_link"/>
+        <origin xyz="0.0125 0 0" rpy="0 0 0"/>
+    </joint>
+
+</robot>

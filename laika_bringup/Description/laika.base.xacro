@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="laika">
+
+   <!-- Core Robot Description -->
+
+<!-- Base Link -->
+    <link name="base_link" >
+        <visual>
+            <geometry>
+                <mesh filename="package://laika_bringup/Mesh/${laika_mesh}" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="blue" />
+        </visual>
+        <collision>
+            <geometry>
+                <box size="${laika_length} ${laika_width} ${laika_depth}" />
+            </geometry>
+            <origin xyz="0 0 0.05" rpy="0 0 0" />
+        </collision>
+        <xacro:default_inertial mass="${laika_mass}"/>
+    </link>
+
+<!-- Base Footprint -->
+    <link name="base_footprint" />
+
+    <joint name="base_link_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.05" rpy="0 0 0"/>
+    </joint>
+
+<!-- Right Front Wheel Link-->
+    <xacro:wheel_link wheel_link_name="left_front_wheel_link"/>
+
+    <joint name="base_left_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_front_wheel_link"/>
+        <origin xyz="0.10 0.08 0" rpy="0 0 0" />
+        <axis xyz="0.0 1 0.0"/>
+    </joint>
+
+<!-- Right Front Wheel Link-->
+    <xacro:wheel_link wheel_link_name="right_front_wheel_link"/>
+
+    <joint name="base_right_front_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_front_wheel_link"/>
+        <origin xyz="0.10 -0.08 0" rpy="0 0 0" />
+        <axis xyz="0.0 1 0.0"/>
+    </joint>
+
+<!-- Left Back Wheel Link-->
+    <xacro:wheel_link wheel_link_name="left_back_wheel_link"/>
+
+    <joint name="base_left_back_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="left_back_wheel_link"/>
+        <origin xyz="-0.10 0.08 0" rpy="0 0 0" />
+        <axis xyz="0.0 1 0.0"/>
+    </joint>
+
+<!-- Right Back Wheel Link-->
+    <xacro:wheel_link wheel_link_name="right_back_wheel_link"/>
+
+    <joint name="base_right_back_wheel_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="right_back_wheel_link"/>
+        <origin xyz="-0.10 -0.08 0" rpy="0 0 0" />
+        <axis xyz="0.0 1 0.0"/>
+    </joint>
+
+</robot>
